@@ -36,9 +36,8 @@ public class AccountServiceImpl implements IAccountService {
         Mono<Account> accountMono= accountRepository.save(account);
 
         accountMono.subscribe(bank_account->{
-           UserDto userDto=  new UserDto();
-           userDto.setUserId(accountDto.getUserId());
-           String message =new Gson().toJson(userDto);
+            accountDto.setAccountId(bank_account.getAccountId());
+           String message =new Gson().toJson(accountDto);
            this.kafkaAccountProducer.sendAccount(message);
         });
 

@@ -12,5 +12,5 @@ import reactor.core.publisher.Mono;
 public interface IUserRepository extends ReactiveCrudRepository <User,String> {
 
     Mono<User> findByDni(String dni);
-    Mono<User> updateUserAccount(AccountDto accountDto);
+
 }

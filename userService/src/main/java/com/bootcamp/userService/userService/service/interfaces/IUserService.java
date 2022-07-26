@@ -12,7 +12,7 @@ public interface IUserService {
 
 
 
-    Mono<User> updateUserAccount(AccountDto accountDto);
+    Mono<User> updateUserAccount(String message);
 
     Mono<User> findByDni(String dni);
 
