@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  security:
+    user:
+      name: nttdata
+      password: nttd4t4
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/1Rolo5/config-repository.git
+          search-paths: /
+          default-label: "master"
+
+
