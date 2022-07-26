@@ -46,7 +46,8 @@ public class UserServiceImpl implements IUserService {
             Account account  =new Account(accountDto.getAccountId(), accountDto.getAvaliableBalanceSoles(),
                     accountDto.getAvaliableBalanceBootCoin(),accountDto.getType());
 
-
+            accountList.add(account);
+            userObject.setAccounts(accountList);
             return userObject;
         });
             userMono = userMono.flatMap(result ->{

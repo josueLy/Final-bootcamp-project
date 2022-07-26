@@ -1,6 +1,6 @@
 package com.bootcamp.accountService.accountService.dto;
 
-import com.bootcamp.accountService.accountService.entity.Account;
+import com.bootcamp.accountService.accountService.config.entity.Account;
 import lombok.Data;
 import java.util.List;
 

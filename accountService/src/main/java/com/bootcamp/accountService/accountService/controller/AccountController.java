@@ -17,17 +17,19 @@ public class AccountController {
         @Autowired
         private IAccountService accountService;
 
-        private  KafkaAccountProducer kafkaAccountProducer;
+       /* private  KafkaAccountProducer kafkaAccountProducer;
         @Autowired
         AccountController (KafkaAccountProducer kafkaAccountProducer) {
             this.kafkaAccountProducer = kafkaAccountProducer;
     }
 
+        */
+
         @PostMapping(value = "/create")
         public void sendMessageToKafkaTopic (@RequestBody AccountDto accountDto) {
 
-            //accountService.save(accountDto).subscribe();
-            String message = new Gson().toJson(accountDto);
-            this.kafkaAccountProducer.sendAccount(message);
+            accountService.save(accountDto);
+            //String message = new Gson().toJson(accountDto);
+           // this.kafkaAccountProducer.sendAccount(message);
     }
 }
