@@ -32,7 +32,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    //@KafkaListener()
+    @KafkaListener(topics = "send-topic-account", groupId = "group_id")
     public Mono<User> update(UserDto userDto) {
         Mono<User> userMono = userRepository.findById(userDto.getIdUser());
         userMono = userMono.map(user -> {
@@ -50,5 +50,7 @@ public class UserServiceImpl implements IUserService {
         return userMono;
     }
 
-    // Find By Dni
+    public Mono<User> findByDni(String dni){
+        return userRepository.findByDni(dni);
+    }
 }

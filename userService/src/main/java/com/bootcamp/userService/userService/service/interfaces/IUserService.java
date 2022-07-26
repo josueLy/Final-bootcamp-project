@@ -10,4 +10,7 @@ public interface IUserService {
 
     Mono<User> update(UserDto userDto);
 
+    Mono<User> findByDni(String dni);
+
+
 }

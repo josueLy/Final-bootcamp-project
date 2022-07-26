@@ -1,14 +1,12 @@
-package com.bootcamp.userService.userService.service.interfaces;
+package com.bootcamp.accountService.accountService.service.interfaces;
 
-import com.bootcamp.userService.userService.dto.UserDto;
-import com.bootcamp.userService.userService.entity.User;
+import com.bootcamp.accountService.accountService.dto.AccountDto;
+import com.bootcamp.accountService.accountService.entity.Account;
 import reactor.core.publisher.Mono;
 
-public interface IUserService {
+public interface IAccountService {
 
-    Mono<User> save(UserDto userDto);
-
-    Mono<User> update(UserDto userDto);
+    Mono<Account> save(AccountDto accountDto);
 
 
 }
