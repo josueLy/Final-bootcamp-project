@@ -5,12 +5,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@Document(collection = "Account")
+@Document(collection = "account")
 public class Account {
     @Id
     private String accountId;
     private double avaliableBalanceSoles;
     private double avaliableBalanceBootCoin;
     private String type;
-
 }

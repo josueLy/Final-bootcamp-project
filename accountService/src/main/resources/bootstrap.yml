@@ -1,9 +1,10 @@
 spring:
   application:
-    name: service-monederoF
+    name: service-account
     data:
       mongodb:
-        uri: mongodb://localhost:27017/MonederoBD #mongodb://localhost:27017
+        uri: mongodb://host:27017/MonederoBD #mongodb://localhost:27017
+
   cloud:
     config:
       uri: http://localhost:8081

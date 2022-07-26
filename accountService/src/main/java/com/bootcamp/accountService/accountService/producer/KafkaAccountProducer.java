@@ -18,7 +18,7 @@ public class KafkaAccountProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendToUpdateAccount(String message)
+    public void sendAccount(String message)
     {
         LOGGER.info("Producing message {}",message);
         this.kafkaTemplate.send("send-topic-account",message);

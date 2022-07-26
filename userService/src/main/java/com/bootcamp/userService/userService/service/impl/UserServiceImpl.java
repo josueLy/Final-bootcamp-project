@@ -1,7 +1,9 @@
 package com.bootcamp.userService.userService.service.impl;
 
 import com.bootcamp.userService.userService.Repository.IUserRepository;
+import com.bootcamp.userService.userService.dto.AccountDto;
 import com.bootcamp.userService.userService.dto.UserDto;
+import com.bootcamp.userService.userService.entity.Account;
 import com.bootcamp.userService.userService.entity.User;
 import com.bootcamp.userService.userService.service.redis.RedisService;
 import com.bootcamp.userService.userService.service.interfaces.IUserService;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -32,15 +36,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    //@KafkaListener()
-    public Mono<User> update(UserDto userDto) {
-        Mono<User> userMono = userRepository.findById(userDto.getIdUser());
+    @KafkaListener(topics = "send-topic-account", groupId = "group_id")
+    public Mono<User> updateUserAccount(AccountDto accountDto) {
+        Mono<User> userMono = userRepository.findById(accountDto.getUserId());
         userMono = userMono.map(user -> {
             User userObject = user;
-            userObject.setDni(userDto.getDni());
-            userObject.setPhoneNumber(userDto.getPhoneNumber());
-            userObject.setEmailAddress(userDto.getEmailAddress());
-            userObject.setAccounts(userDto.getAccounts());
+            List<Account> accountList = userObject.getAccounts();
+
+            Account account  =new Account(accountDto.getAccountId(), accountDto.getAvaliableBalanceSoles(),
+                    accountDto.getAvaliableBalanceBootCoin(),accountDto.getType());
+
+
             return userObject;
         });
             userMono = userMono.flatMap(result ->{
@@ -50,5 +56,7 @@ public class UserServiceImpl implements IUserService {
         return userMono;
     }
 
-    // Find By Dni
+    public Mono<User> findByDni(String dni){
+        return userRepository.findByDni(dni);
+    }
 }
