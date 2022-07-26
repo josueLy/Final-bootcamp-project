@@ -1,4 +1,4 @@
-package com.bootcamp.userService.userService.service.redis.redis;
+package com.bootcamp.userService.userService.service.redis;
 
 import com.bootcamp.userService.userService.dto.UserDto;
 import com.bootcamp.userService.userService.entity.User;

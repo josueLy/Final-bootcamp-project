@@ -1,11 +1,12 @@
-package com.bootcamp.userService.userService.service.redis.impl;
+package com.bootcamp.userService.userService.service.impl;
 
 import com.bootcamp.userService.userService.Repository.IUserRepository;
 import com.bootcamp.userService.userService.dto.UserDto;
 import com.bootcamp.userService.userService.entity.User;
-import com.bootcamp.userService.userService.service.redis.redis.RedisService;
-import com.bootcamp.userService.userService.service.redis.interfaces.IUserService;
+import com.bootcamp.userService.userService.service.redis.RedisService;
+import com.bootcamp.userService.userService.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -31,15 +32,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    //@KafkaListener()
     public Mono<User> update(UserDto userDto) {
         Mono<User> userMono = userRepository.findById(userDto.getIdUser());
         userMono = userMono.map(user -> {
-            User user1 = user;
-            user1.setDni(userDto.getDni());
-            user1.setPhoneNumber(userDto.getPhoneNumber());
-            user1.setEmailAddress(userDto.getEmailAddress());
-            user1.setAccounts(userDto.getAccounts());
-            return user1;
+            User userObject = user;
+            userObject.setDni(userDto.getDni());
+            userObject.setPhoneNumber(userDto.getPhoneNumber());
+            userObject.setEmailAddress(userDto.getEmailAddress());
+            userObject.setAccounts(userDto.getAccounts());
+            return userObject;
         });
             userMono = userMono.flatMap(result ->{
                 return userRepository.save(result);
@@ -47,4 +49,6 @@ public class UserServiceImpl implements IUserService {
 
         return userMono;
     }
+
+    // Find By Dni
 }

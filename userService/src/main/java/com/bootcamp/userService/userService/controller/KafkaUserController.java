@@ -2,16 +2,13 @@ package com.bootcamp.userService.userService.controller;
 
 import com.bootcamp.userService.userService.dto.UserDto;
 import com.bootcamp.userService.userService.producer.KafkaUserProducer;
-import com.bootcamp.userService.userService.service.redis.interfaces.IUserService;
-import com.bootcamp.userService.userService.service.redis.redis.RedisService;
+import com.bootcamp.userService.userService.service.interfaces.IUserService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.swing.plaf.IconUIResource;
 
 @RestController
 @RequestMapping(value = "/user")

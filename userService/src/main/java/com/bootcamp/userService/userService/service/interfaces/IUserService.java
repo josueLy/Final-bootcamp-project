@@ -1,4 +1,4 @@
-package com.bootcamp.userService.userService.service.redis.interfaces;
+package com.bootcamp.userService.userService.service.interfaces;
 
 import com.bootcamp.userService.userService.dto.UserDto;
 import com.bootcamp.userService.userService.entity.User;
