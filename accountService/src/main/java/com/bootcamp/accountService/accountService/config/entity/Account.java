@@ -1,4 +1,4 @@
-package com.bootcamp.accountService.accountService.entity;
+package com.bootcamp.accountService.accountService.config.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
